@@ -6,8 +6,11 @@
 # @Last Modified time: 2016-01-19 18:39:03
 
 from django.conf.urls import url
-
 from . import views
+
+# Added 2016/02/26
+from django.contrib.auth.views import login
+
 
 app_name = 'hackIDE'
 

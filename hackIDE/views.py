@@ -9,6 +9,10 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponseForbidden
 
+# Added 2016/02/26
+from django.contrib.auth.decorators import login_required
+
+
 import requests, os
 
 
@@ -67,9 +71,10 @@ simply renders the index.html template
 # hackIDE/index.html를 실행하여 보여준다. 
 # 이 부분을 작성해 주어야 hackIDE/index.html과 연결된다. 안되면 페이지를 찾을 수 없다는 오류가 뜸. views는 url과 연결되어 있다.
 # 만일 hackIDE/index.html에 코딩이 되어있지 않다면 TemplateDoesNotExist 가 뜬다.
+@login_required
 def index(request):
 	# render the index.html
-	return render(request, 'hackIDE/index.html', {})
+	return render(request, 'hackIDE/index.html', {'user': request.user})
 
 
 """
@@ -151,7 +156,7 @@ def runCode(request):
 	else:
 		return HttpResponseForbidden()
 
-
+@login_required
 def savedCodeView(request, code_id):
 	# render the index.html
-	return render(request, 'hackIDE/index.html', {})
+	return render(request, 'hackIDE/index.html', {'user': request.user})
