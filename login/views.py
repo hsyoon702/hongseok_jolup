@@ -29,7 +29,7 @@ def register(request):
     variables,
     )
 
- 
+@login_required
 def register_success(request):
     return render_to_response(
     'registration/success.html',
